@@ -9,6 +9,8 @@ apt-get -y install debhelper autotools-dev dh-autoreconf file libncurses5-dev li
 sh autogen.sh
 ./configure CC=kcc LD=kcc CFLAGS="-fissue-report=$json_out"
 make -j`nproc`
- 
+
+timeout 10s ./a.out
+
 touch $json_out && rv-html-report $json_out -o $report_out
 rv-upload-report $report_out
